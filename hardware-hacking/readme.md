@@ -113,6 +113,7 @@ Here's the wiring diagram for an RGB LED:
 
 
 ## Resources
+- <a href="http://makezine.com/comparison/boards/">Make: The Maker's Guide to Boards</a>
 - <a href="https://www.arduino.cc/en/Tutorial/HomePage">Arduino tutorials</a> and <a href="https://www.arduino.cc/en/Reference/HomePage">Arduino language reference</a>
 - <a href="https://learn.adafruit.com/">Adafruit tutorials</a>
 - <a href="https://www.sparkfun.com/tutorials">Sparkfun tutorials</a>
