@@ -84,34 +84,104 @@ Here's the wiring diagram for an RGB LED:
 <img src="wiring/rgb.png" />
 
 
+The trick with an RGB LED is that now we want to control the amount of Red, Green, and Blue that is produced by the light.  To do so, we will a function called `analogWrite` which will allow us to control the amount of light each Red, Green, and Blue diodes produce on a scale from **0 to 255**.  
+
+The code below, for example, should produce a mixture of red and blue:
+
+```
+void setup() {
+  // initialize digital pins 9, 10, 11 as an output.
+  pinMode(11, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(9, OUTPUT);
+  
+}
+
+void loop() {
+  analogWrite(11, 255);
+  analogWrite(10, 0);
+  analogWrite(9, 255);  
+}
+```
+
 ### Piezo buzzer 
+Piezo buzzers are tiny components that can play sound.
+
 <a href="https://www.arduino.cc/en/Tutorial/toneMelody">Playing a tone with a piezo buzzer</a>
 
 <img src="wiring/Tone_Fritzing.png" />
 
 
+```
+void setup() {
+  // initialize digital pin 8 as an output.
+  pinMode(8, OUTPUT);
+
+  
+}
+
+void loop() {
+  // plays a frequency of 440 hz on pin 8 
+  tone(8, 440);
+}
+```
+
+<a href="http://www.phy.mtu.edu/~suits/notefreqs.html">Note frequency chart</a>
+
 ## Inputs 
-### Logging
-<a href="https://www.arduino.cc/en/Serial/Print">Logging values from Arduino using Serial.print</a>
 
-### Push button
-<a href="https://www.arduino.cc/en/Tutorial/Button">Wiring diagram and sketch explanation</a>
-
-### Rotary encoder 
-<a href="http://bildr.org/2012/08/rotary-encoder-arduino/">Wiring diagram and detailed explanation of code</a>
 
 ### Photocell resistor
 <img src="wiring/photocell.png" />
 
-### Accelerometer
-<a href="https://www.arduino.cc/en/Tutorial/ADXL3xx">Accelerometer wiring and code explanation</a>
+A photocell resistor measures the amount of light that its sensing.  Rather than send or **write** values out to the photocell resistor, instead we want to **read** values from it.  Eventually, we will write some code that will use the values from the resistor to change something else in our circuit (the Piezo buzzer, perhaps), but for now, it would be nice to **see** what the values are that are getting returned, right?
 
-## Suggested exploration exercises:
-- Control an RGB LED using a rotary encoder or potentiometer.
-- Control a piezo buzzer using a rotary encoder, potentiometer, and/or push button.
-- Check out noduino and try to get a couple of circuits controlled from the browser.
-- Try out the WIFI shield and communicate to the world with the Arduino.
-- Make a stitched circuit using the Adafruit Flora; try out the color sensor or GPS components.
+```
+void setup() {
+  // initialize Serial port for data transmission
+  Serial.begin(9600);
+
+  
+}
+
+void loop() {
+  // Read the input from analago input pin 1, where the photocell resistor is attached
+  int sensorValue = analogRead(1);
+
+  // Will "print" or display the sensorValue to the screen
+  Serial.println(sensorValue);
+}
+```
+
+**Note**: Analog values will range from **0 to 1025**.
+
+## Inputs and outputs 
+
+Let's put some pieces together!  We will use the sensor readings from the photocell resistor to control the tone of the piezo buzzer:
+
+```
+void setup() {
+
+  // initialize digital pin 8 as an output.
+  pinMode(8, OUTPUT);
+
+  // initialize Serial port for data transmission
+  Serial.begin(9600);
+
+  
+}
+
+void loop() {
+  // Read the input from analago input pin 1, where the photocell resistor is attached
+  int sensorValue = analogRead(1);
+
+  // Will "print" or display the sensorValue to the screen
+  Serial.println(sensorValue);
+  
+  // Use the sensorValue to control the tone of the piezo buzzer
+  tone(8, sensorValue);
+}
+```  
 
 
 ## Resources
