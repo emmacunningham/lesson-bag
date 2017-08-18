@@ -1,4 +1,4 @@
-
+# Hello
 # Callbacks and functions as “first-class objects”
 
 ## Introduction
@@ -73,14 +73,14 @@ delay has passed.
 ```javascript
 // Example 3
 
-function announce() { 
-    console.log('Ding!'); 
+function announce() {
+    console.log('Ding!');
 }
 
 var threeSecondTimeout = setTimeout (announce, 3000);
 
-var fiveSecondTimeout = setTimeout (function () { 
-    console.log('Ding!'); 
+var fiveSecondTimeout = setTimeout (function () {
+    console.log('Ding!');
 }, 5000);
 ```
 
@@ -88,10 +88,10 @@ The `setInterval()` function takes a function and a delay in
 milliseconds, and executes that function as closely as possible each
 time that interval of milliseconds has passed.
 
-```javascript 
+```javascript
 // Example 4
 
-function annoy(){ 
+function annoy(){
     console.log('Are we there yet?');
 }
 
@@ -158,7 +158,7 @@ function countWhereTrue (numbers, predicate) {
             count++;
         }
     }
-    return count;    
+    return count;
 }
 
 function isOdd(number) {
@@ -215,7 +215,7 @@ function makeCountWhereTrue (predicate) {
                count++;
             }
         }
-        return count;   
+        return count;
     };
 }
 
